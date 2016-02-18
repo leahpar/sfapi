@@ -1,4 +1,2 @@
-api
-===
-
-A Symfony project created on February 11, 2016, 4:07 pm.
+# sfapi
+A symfony test bundle for restfull api with oauth
