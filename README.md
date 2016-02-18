@@ -29,7 +29,7 @@ http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html
 Try to get unauthenticated data
 
 ```
-$ curl -D - -X GET http://api.local/trucs/1
+curl -D - -X GET http://api.local/trucs/1
 
 HTTP/1.1 401 Unauthorized
 Date: Thu, 18 Feb 2016 16:50:10 GMT
@@ -51,14 +51,14 @@ Request token
 
 ```
 # POST
-$ curl -X POST -D - \
+curl -X POST -D - \
   -H "Content-Type: application/json" \
   -H "Accept: application/json" \
   -d '{"grant_type":"passowrd", "username":"admin", "password":"admin", "client_id":"1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4", "client_secret":"4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k"}' \
   http://api.local/oauth/v2/token
 
 # GET
-$ curl -X GET -D - \
+curl -X GET -D - \
   "http://api.local/oauth/v2/token?grant_type=password&username=admin&password=admin&client_id=1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4&client_secret=4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k"
 
 HTTP/1.1 200 OK
@@ -104,7 +104,7 @@ Content-Type: application/json
 Create new item
 
 ```
-$ curl -X POST -D - \
+curl -X POST -D - \
   -H "Content-Type: application/json" \
   -H "Authorization:Bearer M2QwNTc0MTkwYWNlZjI4YzdhOGI2Y2U0ZTkyZDM4MDBlMjc1YTUxMWY5YjE1OWNlMzAwODc4ZTVjZGI4ZGY3Yg" \
   -d '{"nom":"tata"}' \
@@ -124,7 +124,7 @@ Content-Type: application/json
 Update item
 
 ```
-$ curl -X PUT -D - \
+curl -X PUT -D - \
   -H "Content-Type: application/json" \
   -H "Authorization:Bearer M2QwNTc0MTkwYWNlZjI4YzdhOGI2Y2U0ZTkyZDM4MDBlMjc1YTUxMWY5YjE1OWNlMzAwODc4ZTVjZGI4ZGY3Yg" \
   -d '{"nom":"toto42"}' \
@@ -144,7 +144,7 @@ Content-Type: text/html; charset=UTF-8
 Patch item
 
 ```
-$ curl -X PATCH -D - \
+curl -X PATCH -D - \
   -H "Content-Type: application/json" \
   -H "Authorization:Bearer M2QwNTc0MTkwYWNlZjI4YzdhOGI2Y2U0ZTkyZDM4MDBlMjc1YTUxMWY5YjE1OWNlMzAwODc4ZTVjZGI4ZGY3Yg" \
   -d '{"nom":"toto10"}' \
@@ -200,3 +200,10 @@ Content-Type: application/json
     {"id":7,"nom":"tata2"},
 ]
 ```
+
+## TODO
+
+- fix response code for PUT/PATCH/DELETE
+- how to refresh oauth token
+- paginate search query
+- use FormTypes for POST/PUT/PATCH

@@ -73,6 +73,7 @@ class TrucRestController extends FOSRestController
 
     /**
      * @param Request $request
+     * @param Truc $truc
      * @return Response
      */
     public function putTrucAction(Request $request, Truc $truc)
@@ -107,6 +108,7 @@ class TrucRestController extends FOSRestController
 
     /**
      * @param Request $request
+     * @param Truc $truc
      * @return Response
      */
     public function patchTrucAction(Request $request, Truc $truc)
@@ -138,6 +140,10 @@ class TrucRestController extends FOSRestController
         return $this->handleView($view);
     }
 
+    /**
+     * @param Request $request
+     * @return Response
+     */
     public function searchTrucAction(Request $request)
     {
         $data = $request->query->all();
