@@ -1,0 +1,12 @@
+#acme_api:
+#    resource: "@AcmeApiBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+acme_api_demos:
+    type: rest
+    resource: "@AcmeApiBundle/Resources/config/routing_rest.yml"
+#    prefix:   /api

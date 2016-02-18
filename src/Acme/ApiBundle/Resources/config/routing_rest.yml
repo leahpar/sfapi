@@ -1,0 +1,4 @@
+trucs :
+  type: rest
+  resource:     "Acme\ApiBundle\Controller\TrucRestController"
+  name_prefix:  acme_api_
