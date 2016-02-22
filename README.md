@@ -26,7 +26,7 @@ http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html
 
 ## Usage
 
-Try to get unauthenticated data
+### Try to get unauthenticated data
 
 ```
 curl -D - -X GET http://api.local/trucs/1
@@ -47,7 +47,22 @@ Content-Type: application/json
 }
 ```
 
-Request token 
+
+### add user
+
+```sql
+INSERT INTO `oauth2_clients` VALUES (NULL, '3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4', 'a:0:{}', '4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k', 'a:2:{i:0;s:8:"password";i:1;s:13:"refresh_token";}');
+```
+
+```
+$ php app/console fos:user:create
+Please choose a username:admin
+Please choose an email:admin@example.com
+Please choose a password:admin
+Created user admin
+```
+
+### Request token 
 
 ```
 # POST
@@ -79,7 +94,22 @@ Content-Type: application/json
 }
 ```
 
-Retry to get data with token
+### Refresh token
+ 
+```
+curl -X GET -D - \
+  "http://api.local/oauth/v2/token?grant_type=refresh_token&client_id=1_3bcbxd9e24g0gk4swg0kwgcwg4o8k8g4g888kwc44gcc0gwwk4&client_secret=4ok2x70rlfokc8g0wws8c8kwcokw80k44sg48goc0ok4w0so0k&refresh_token=NmRkY2IyMzY1MTJkNjNlNTU3Njc2ZjNmN2IxNGE0MGFmMjE2M2Y1NjVhZDZiZDg0MjBkMDNiMmQzNzJjODUyNg"
+
+{
+    "access_token":"NTdhZTJiMDM3ZWIxMjA4MzNhZjQxMDA0YTRmNzhhNjgzNDRlMTNlZDRlY2Y2YjlkYzg5YzZkZmI3OGFlNTYyMw",
+    "expires_in":3600,
+    "token_type":"bearer",
+    "scope":null,
+    "refresh_token":"NWQzOTkzNzIyNDdhZmFiNWM0NWJhMTIzOGNkM2JhY2FhMDlhNzM4NDQ3Y2EyMTZhODNkMGIzYzZhYzA5YzlkOQ"
+}
+```
+
+### Retry to get data with token
 
 ```
 curl -X GET -D - \
@@ -101,7 +131,7 @@ Content-Type: application/json
 }
 ```
 
-Create new item
+### Create new item
 
 ```
 curl -X POST -D - \
@@ -121,7 +151,7 @@ Content-Length: 0
 Content-Type: application/json
 ```
 
-Update item
+### Update item
 
 ```
 curl -X PUT -D - \
@@ -141,7 +171,7 @@ Content-Length: 0
 Content-Type: text/html; charset=UTF-8
 ```
 
-Patch item
+### Patch item
 
 ```
 curl -X PATCH -D - \
@@ -161,7 +191,7 @@ Content-Length: 0
 Content-Type: text/html; charset=UTF-8
 ```
 
-Delete item
+### Delete item
 
 ```
 curl -X DELETE -D - \
@@ -178,7 +208,7 @@ Content-Length: 0
 Content-Type: text/html; charset=UTF-8
 ```
 
-Search items
+### Search items
 
 ```
 curl -X GET -D - \
@@ -199,6 +229,19 @@ Content-Type: application/json
     {"id":6,"nom":"tata2"},
     {"id":7,"nom":"tata2"},
 ]
+```
+
+## 
+
+### Get user and roles in controller
+
+```php
+$user = $this->get('security.token_storage')->getToken()->getUser();
+
+// roles check
+if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+    // KO
+}
 ```
 
 ## TODO
