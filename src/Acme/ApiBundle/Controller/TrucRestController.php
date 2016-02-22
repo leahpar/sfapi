@@ -33,7 +33,8 @@ class TrucRestController extends FOSRestController
         $em->remove($truc);
         $em->flush();
 
-        $view = $this->view(null, Response::HTTP_NO_CONTENT);
+        // return {} to avoid Response::HTTP_NO_CONTENT
+        $view = $this->view('{}', Response::HTTP_OK);
         return $this->handleView($view);
     }
 
@@ -64,10 +65,10 @@ class TrucRestController extends FOSRestController
         $em->persist($truc);
         $em->flush();
 
-        $view = $this->routeRedirectView('acme_api_get_truc',
-            array('truc' => $truc->getId()),
-            Response::HTTP_CREATED
-        );
+        // return something to avoid Response::HTTP_NO_CONTENT
+        $view = $this->view(
+            array('id' => $truc->getId()),
+            Response::HTTP_OK);
         return $this->handleView($view);
     }
 
@@ -99,10 +100,10 @@ class TrucRestController extends FOSRestController
         $em->persist($truc);
         $em->flush();
 
-        $view = $this->routeRedirectView('acme_api_get_truc',
-            array('truc' => $truc->getId()),
-            Response::HTTP_OK
-        );
+        // return something to avoid Response::HTTP_NO_CONTENT
+        $view = $this->view(array(
+            'id' => $truc->getId()),
+            Response::HTTP_OK);
         return $this->handleView($view);
     }
 
@@ -133,10 +134,10 @@ class TrucRestController extends FOSRestController
         $em->persist($truc);
         $em->flush();
 
-        $view = $this->routeRedirectView('acme_api_get_truc',
-            array('truc' => $truc->getId()),
-            Response::HTTP_OK
-        );
+        // return something to avoid Response::HTTP_NO_CONTENT
+        $view = $this->view(array(
+            'id' => $truc->getId()),
+            Response::HTTP_OK);
         return $this->handleView($view);
     }
 
